@@ -1,0 +1,31 @@
+import java.util.Scanner;
+
+// Program to demonstrate integer operations and operator precedence.
+public class IntOperations {
+
+    public static void main(String[] args) {
+        // Create a Scanner object for user input.
+        Scanner input = new Scanner(System.in);
+
+        // Prompt the user to enter three integer values.
+        System.out.print("Enter an integer value for a: ");
+        int a = input.nextInt();
+        System.out.print("Enter an integer value for b: ");
+        int b = input.nextInt();
+        System.out.print("Enter an integer value for c: ");
+        int c = input.nextInt();
+
+        // Perform the specified integer operations.
+        int result1 = a + b * c;
+        int result2 = a * b + c;
+        int result3 = c + a / b;
+        int result4 = a % b + c;
+
+        // Display the results, demonstrating operator precedence.
+        System.out.println("The results of Int Operations are " + result1 + ", " + result2 +
+            ", " + result3 + ", and " + result4);
+
+        // Close the scanner.
+        input.close();
+    }
+}

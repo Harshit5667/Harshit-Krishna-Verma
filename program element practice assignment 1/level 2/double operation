@@ -1,0 +1,31 @@
+import java.util.Scanner;
+
+// Program to demonstrate double operations and operator precedence.
+public class DoubleOperations {
+
+    public static void main(String[] args) {
+        // Create a Scanner object for user input.
+        Scanner input = new Scanner(System.in);
+
+        // Prompt the user to enter three double values.
+        System.out.print("Enter a double value for a: ");
+        double a = input.nextDouble();
+        System.out.print("Enter a double value for b: ");
+        double b = input.nextDouble();
+        System.out.print("Enter a double value for c: ");
+        double c = input.nextDouble();
+
+        // Perform the specified double operations.
+        double result1 = a + b * c;
+        double result2 = a * b + c;
+        double result3 = c + a / b;
+        double result4 = a % b + c;
+
+        // Display the results.
+        System.out.println("The results of Double Operations are " + result1 + ", " + result2 +
+            ", " + result3 + ", and " + result4);
+
+        // Close the scanner.
+        input.close();
+    }
+}

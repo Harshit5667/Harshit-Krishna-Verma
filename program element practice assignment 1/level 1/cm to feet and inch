@@ -1,0 +1,27 @@
+// Program to convert height from centimeters to feet and inches.
+import java.util.Scanner;
+public class HeightConverter {
+
+    public static void main(String[] args) {
+        // Using a Scanner to get user input for height in centimeters.
+        java.util.Scanner input = new java.util.Scanner(System.in);
+        System.out.print("Enter your height in centimeters: ");
+        double heightCm = input.nextDouble();
+
+        // Constants for conversion.
+        double cmInInch = 2.54;
+        int inchesInFoot = 12;
+
+        // Convert centimeters to total inches.
+        double totalInches = heightCm / cmInInch;
+
+        // Calculate feet and remaining inches.
+        int feet = (int) (totalInches / inchesInFoot);
+        double inches = totalInches % inchesInFoot;
+
+        // Display the converted height.
+        System.out.println("Your Height in cm is " + heightCm + " while in feet is " + feet + " and inches is " + inches);
+
+        input.close();
+    }
+}
