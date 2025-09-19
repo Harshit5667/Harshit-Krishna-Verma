@@ -1,0 +1,43 @@
+import java.util.Scanner;
+
+// Program to find the sum of n natural numbers using a while loop and compare with the formula.
+public class SumOfNaturalNumbersWhile {
+
+    public static void main(String[] args) {
+        // Create a Scanner object for user input.
+        Scanner input = new Scanner(System.in);
+
+        // Prompt the user for a number.
+        System.out.print("Enter a natural number: ");
+        int n = input.nextInt();
+
+        // Check if the number is a natural number (positive integer or zero).
+        if (n < 0) {
+            System.out.println("The number " + n + " is not a natural number.");
+        } else {
+            // Calculate sum using a while loop.
+            int sumWhile = 0;
+            int i = 1;
+            while (i <= n) {
+                sumWhile += i;
+                i++;
+            }
+
+            // Calculate sum using the formula.
+            int sumFormula = n * (n + 1) / 2;
+
+            // Compare the results and print.
+            System.out.println("Sum using while loop: " + sumWhile);
+            System.out.println("Sum using formula: " + sumFormula);
+
+            if (sumWhile == sumFormula) {
+                System.out.println("The results from both computations are correct.");
+            } else {
+                System.out.println("The results do not match.");
+            }
+        }
+
+        // Close the scanner.
+        input.close();
+    }
+}

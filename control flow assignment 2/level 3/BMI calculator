@@ -1,0 +1,40 @@
+import java.util.Scanner;
+
+// Program to calculate the BMI of a person and determine their weight status.
+public class BMICalculator {
+    public static void main(String[] args) {
+        // Create a Scanner object for user input.
+        Scanner input = new Scanner(System.in);
+
+        // Prompt the user for weight and height.
+        System.out.print("Enter your weight in kilograms (kg): ");
+        double weight = input.nextDouble();
+        System.out.print("Enter your height in centimeters (cm): ");
+        double heightCm = input.nextDouble();
+
+        // Convert height from cm to meters.
+        double heightMeters = heightCm / 100.0;
+        
+        // Calculate the BMI using the formula.
+        double bmi = weight / (heightMeters * heightMeters);
+
+        // Determine the weight status based on the BMI value.
+        String status;
+        if (bmi < 18.5) {
+            status = "Underweight";
+        } else if (bmi >= 18.5 && bmi <= 24.9) {
+            status = "Normal or Healthy Weight";
+        } else if (bmi >= 25.0 && bmi <= 29.9) {
+            status = "Overweight";
+        } else {
+            status = "Obesity";
+        }
+
+        // Print the result.
+        System.out.printf("Your BMI is: %.2f kg/m^2\n", bmi);
+        System.out.println("Weight Status: " + status);
+
+        // Close the scanner.
+        input.close();
+    }
+}

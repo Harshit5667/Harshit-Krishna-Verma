@@ -1,0 +1,34 @@
+import java.util.Scanner;
+
+// Program to find the largest of two integers using a method.
+public class LargestOfTwo {
+
+    // Method to find the maximum of two integers.
+    public static int max(int number1, int number2) {
+        if (number1 > number2) {
+            return number1;
+        } else {
+            return number2;
+        }
+    }
+
+    public static void main(String[] args) {
+        // Create a Scanner object for user input.
+        Scanner input = new Scanner(System.in);
+
+        // Prompt the user for two integers.
+        System.out.print("Enter the first number: ");
+        int number1 = input.nextInt();
+        System.out.print("Enter the second number: ");
+        int number2 = input.nextInt();
+
+        // Call the max() method to find the largest number.
+        int largestNumber = max(number1, number2);
+
+        // Print the result.
+        System.out.println("The largest number is " + largestNumber);
+
+        // Close the scanner.
+        input.close();
+    }
+}

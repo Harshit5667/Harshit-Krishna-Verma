@@ -1,0 +1,31 @@
+import java.util.Scanner;
+
+// Program to check if three given values are internal angles of a triangle.
+public class TriangleAnglesCheck {
+    public static void main(String[] args) {
+        // Create a Scanner object for user input.
+        Scanner input = new Scanner(System.in);
+
+        // Prompt the user for three angle values.
+        System.out.println("Enter the three angles of a triangle:");
+        System.out.print("Angle 1: ");
+        int angle1 = input.nextInt();
+        System.out.print("Angle 2: ");
+        int angle2 = input.nextInt();
+        System.out.print("Angle 3: ");
+        int angle3 = input.nextInt();
+
+        // Calculate the sum of the angles.
+        int sumOfAngles = angle1 + angle2 + angle3;
+
+        // Check if the sum is exactly 180.
+        if (sumOfAngles == 180) {
+            System.out.println("The given angles are internal angles of a triangle.");
+        } else {
+            System.out.println("The given angles are not internal angles of a triangle.");
+        }
+
+        // Close the scanner.
+        input.close();
+    }
+}

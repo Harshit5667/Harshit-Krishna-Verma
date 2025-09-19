@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+// Program to check for a Leap Year using a single if statement with logical operators.
+public class LeapYearSingleIf {
+    public static void main(String[] args) {
+        // Create a Scanner object for user input.
+        Scanner input = new Scanner(System.in);
+
+        // Prompt the user for a year.
+        System.out.print("Enter a year to check if it's a leap year: ");
+        int year = input.nextInt();
+
+        // Check if the year is valid and apply the leap year logic in a single if condition.
+        if (year >= 1582 && ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0))) {
+            System.out.println(year + " is a Leap Year.");
+        } else {
+            System.out.println(year + " is not a Leap Year.");
+        }
+
+        // Close the scanner.
+        input.close();
+    }
+}

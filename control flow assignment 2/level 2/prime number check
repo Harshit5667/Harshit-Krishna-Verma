@@ -1,0 +1,37 @@
+import java.util.Scanner;
+
+// Program to check if a number is a prime number.
+public class PrimeNumberChecker {
+
+    public static void main(String[] args) {
+        // Create a Scanner object for user input.
+        Scanner input = new Scanner(System.in);
+
+        // Prompt the user for a number.
+        System.out.print("Enter a number to check if it's prime: ");
+        int number = input.nextInt();
+
+        // Flag to indicate if the number is prime.
+        boolean isPrime = true;
+
+        // A prime number is a natural number greater than 1.
+        if (number <= 1) {
+            isPrime = false;
+        } else {
+            // Use a for loop to check for divisors from 2 up to the square root of the number.
+            for (int i = 2; i <= Math.sqrt(number); i++) {
+                if (number % i == 0) {
+                    // If a divisor is found, it's not a prime number.
+                    isPrime = false;
+                    break;
+                }
+            }
+        }
+
+        // Print the result.
+        System.out.println("The number is a Prime number? " + isPrime);
+
+        // Close the scanner.
+        input.close();
+    }
+}

@@ -1,0 +1,40 @@
+import java.util.Scanner;
+
+// Program to find the LCM of two integers by first finding the GCD.
+public class LCMCalculator {
+
+    // Method to find the GCD of two integers.
+    public static int findGCD(int number1, int number2) {
+        while (number1 != number2) {
+            if (number1 > number2) {
+                number1 -= number2;
+            } else {
+                number2 -= number1;
+            }
+        }
+        return number1;
+    }
+
+    public static void main(String[] args) {
+        // Create a Scanner object for user input.
+        Scanner input = new Scanner(System.in);
+
+        // Prompt the user for two integers.
+        System.out.print("Enter the first number: ");
+        int number1 = input.nextInt();
+        System.out.print("Enter the second number: ");
+        int number2 = input.nextInt();
+        
+        // Find the GCD of the two numbers.
+        int gcd = findGCD(number1, number2);
+        
+        // Calculate the LCM using the formula: (number1 * number2) / GCD.
+        int lcm = (number1 * number2) / gcd;
+        
+        // Print the result.
+        System.out.println("The LCM of the numbers is " + lcm);
+
+        // Close the scanner.
+        input.close();
+    }
+}

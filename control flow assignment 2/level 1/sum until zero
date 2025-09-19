@@ -1,0 +1,31 @@
+import java.util.Scanner;
+
+// Program to find the sum of numbers until the user enters 0.
+public class SumUntilZero {
+
+    public static void main(String[] args) {
+        // Create a Scanner object for user input.
+        Scanner input = new Scanner(System.in);
+
+        // Initialize variables.
+        double totalSum = 0.0;
+        double number = 0.0;
+
+        // Use a do-while loop to ensure the loop runs at least once.
+        do {
+            // Prompt the user to enter a number.
+            System.out.print("Enter a number (enter 0 to stop): ");
+            number = input.nextDouble();
+
+            // Add the number to the total sum.
+            totalSum += number;
+
+        } while (number != 0);
+
+        // Display the total sum.
+        System.out.println("The total sum of the numbers is: " + totalSum);
+
+        // Close the scanner.
+        input.close();
+    }
+}

@@ -1,0 +1,27 @@
+import java.util.Scanner;
+
+// Program to check if the first number is the smallest of three.
+public class SmallestNumber {
+
+    public static void main(String[] args) {
+        // Create a Scanner object for user input.
+        Scanner input = new Scanner(System.in);
+
+        // Prompt the user for three numbers.
+        System.out.print("Enter the first number: ");
+        int number1 = input.nextInt();
+        System.out.print("Enter the second number: ");
+        int number2 = input.nextInt();
+        System.out.print("Enter the third number: ");
+        int number3 = input.nextInt();
+
+        // Check if the first number is the smallest.
+        boolean isFirstSmallest = (number1 <= number2 && number1 <= number3);
+
+        // Print the result.
+        System.out.println("Is the first number the smallest? " + isFirstSmallest);
+
+        // Close the scanner.
+        input.close();
+    }
+}
