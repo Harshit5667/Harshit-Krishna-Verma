@@ -1,0 +1,31 @@
+import java.util.Scanner;
+
+// Program to convert a distance from feet to yards and miles.
+public class DistanceConverter {
+
+    public static void main(String[] args) {
+        // Create a Scanner object for user input.
+        Scanner input = new Scanner(System.in);
+
+        // Prompt the user for the distance in feet.
+        System.out.print("Enter the distance in feet: ");
+        double distanceInFeet = input.nextDouble();
+
+        // Constants for conversion.
+        final int FEET_PER_YARD = 3;
+        final int YARDS_PER_MILE = 1760;
+
+        // Convert feet to yards.
+        double distanceInYards = distanceInFeet / FEET_PER_YARD;
+
+        // Convert yards to miles.
+        double distanceInMiles = distanceInYards / YARDS_PER_MILE;
+
+        // Display the converted distances.
+        System.out.println("The distance in yards is " + distanceInYards +
+            " while the distance in miles is " + distanceInMiles);
+
+        // Close the scanner.
+        input.close();
+    }
+}

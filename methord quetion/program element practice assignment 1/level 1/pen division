@@ -1,0 +1,20 @@
+// Program to divide pens equally among students and find the remainder.
+import java.util.Scanner;
+public class PenDivider {
+
+    public static void main(String[] args) {
+
+        // Total number of pens and students.
+        int totalPens = 14;
+        int numberOfStudents = 3;
+
+        // Use integer division to find how many pens each student gets.
+        int pensPerStudent = totalPens / numberOfStudents;
+
+        // Use the modulus operator to find the remaining pens.
+        int remainingPens = totalPens % numberOfStudents;
+
+        // Display the results.
+        System.out.println("The Pen Per Student is " + pensPerStudent + " and the remaining pen not distributed is " + remainingPens);
+    }
+}

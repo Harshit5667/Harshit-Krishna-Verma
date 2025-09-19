@@ -1,0 +1,29 @@
+import java.util.Scanner;
+
+// Program to find the quotient and remainder of two numbers.
+public class QuotientRemainderCalculator {
+
+    public static void main(String[] args) {
+        // Create a Scanner object for user input.
+        Scanner input = new Scanner(System.in);
+
+        // Prompt the user for the two numbers.
+        System.out.print("Enter the first number: ");
+        int number1 = input.nextInt();
+        System.out.print("Enter the second number: ");
+        int number2 = input.nextInt();
+
+        // Calculate the quotient using the division operator.
+        int quotient = number1 / number2;
+
+        // Calculate the remainder using the modulus operator.
+        int remainder = number1 % number2;
+
+        // Display the results.
+        System.out.println("The Quotient is " + quotient + " and Reminder is " +
+            remainder + " of two number " + number1 + " and " + number2);
+
+        // Close the scanner.
+        input.close();
+    }
+}
