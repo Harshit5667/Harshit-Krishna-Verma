@@ -1,0 +1,91 @@
+import java.util.Scanner;
+
+public class UniqueCharacterFinder {
+
+    /**
+     * Finds the length of a string without using the built-in length() method.
+     * This method iterates through the characters of the string and counts them.
+     *
+     * @param text The input string.
+     * @return The length of the string.
+     */
+    public static int findStringLength(String text) {
+        int length = 0;
+        try {
+            // A simple way to count characters without using the .length() method directly in the loop.
+            // This relies on charAt() throwing an exception at the end of the string.
+            // For a more robust solution, a for-each loop on toCharArray() is an option, but
+            // this demonstrates using charAt() with a try-catch for counting.
+            while (true) {
+                text.charAt(length);
+                length++;
+            }
+        } catch (StringIndexOutOfBoundsException e) {
+            // The exception is expected when we reach the end of the string.
+        }
+        return length;
+    }
+
+    /**
+     * Finds the unique characters in a string using nested loops and the charAt() method.
+     *
+     * @param text The input string.
+     * @return A character array containing only the unique characters.
+     */
+    public static char[] findUniqueCharacters(String text) {
+        // Use a temporary array to store unique characters. Size is the max possible.
+        char[] tempUniqueChars = new char[findStringLength(text)];
+        int uniqueCount = 0;
+
+        // Outer loop: Iterate through each character of the input string.
+        for (int i = 0; i < findStringLength(text); i++) {
+            char currentChar = text.charAt(i);
+            boolean isUnique = true;
+
+            // Inner loop: Check if the current character has appeared before.
+            for (int j = 0; j < i; j++) {
+                if (currentChar == text.charAt(j)) {
+                    isUnique = false;
+                    break; // Character is not unique, no need to check further.
+                }
+            }
+
+            // If the character is unique, add it to our temporary array.
+            if (isUnique) {
+                tempUniqueChars[uniqueCount] = currentChar;
+                uniqueCount++;
+            }
+        }
+
+        // Create a final, correctly sized array to hold the unique characters.
+        char[] finalUniqueChars = new char[uniqueCount];
+        for (int i = 0; i < uniqueCount; i++) {
+            finalUniqueChars[i] = tempUniqueChars[i];
+        }
+
+        return finalUniqueChars;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Take user input for the string.
+        System.out.print("Enter a string to find its unique characters: ");
+        String text = scanner.nextLine();
+        
+        // Find the unique characters by calling the user-defined method.
+        char[] uniqueChars = findUniqueCharacters(text);
+
+        // Display the result.
+        System.out.print("Unique characters in the string are: [");
+        for (int i = 0; i < findStringLength(uniqueChars.toString()); i++) {
+            System.out.print(uniqueChars[i]);
+            if (i < findStringLength(uniqueChars.toString()) - 1) {
+                System.out.print(", ");
+            }
+        }
+        System.out.println("]");
+        
+        scanner.close();
+    }
+}

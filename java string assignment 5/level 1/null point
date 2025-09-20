@@ -1,0 +1,42 @@
+import java.util.Scanner;
+public class NullPointerExceptionDemo {
+
+    /**
+     * This method is designed to intentionally generate a NullPointerException.
+     */
+    public static void generateNullPointerException() {
+        System.out.println("--- Generating a NullPointerException ---");
+        String text = null; // The string variable is initialized to null.
+
+        // Calling a method on a null object will throw a NullPointerException.
+        System.out.println("The length of the string is: " + text.length());
+    }
+
+    /**
+     * This method demonstrates how to handle a NullPointerException using a try-catch block.
+     */
+    public static void handleNullPointerException() {
+        System.out.println("\n--- Handling a NullPointerException ---");
+        String text = null; // The string variable is initialized to null.
+
+        try {
+            // This line will cause the exception, but it will be caught.
+            System.out.println("The length of the string is: " + text.length());
+        } catch (NullPointerException e) {
+            // The catch block gracefully handles the exception.
+            System.err.println("A NullPointerException was caught. Error message: " + e.getMessage());
+            System.err.println("The program can continue its execution after handling the error.");
+        }
+    }
+
+    public static void main(String[] args) {
+        // First, call the method that will generate the exception.
+        // This will cause the program to crash and terminate here.
+        // The following line will not be executed in a normal run.
+        generateNullPointerException();
+
+        // Refactor your code by uncommenting the line below to call the method
+        // that handles the exception. This demonstrates how to prevent a program crash.
+        // handleNullPointerException();
+    }
+}

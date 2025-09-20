@@ -1,0 +1,80 @@
+
+import java.util.Scanner;
+
+public class StringToUpperCaseConverter {
+
+    /**
+     * Converts a string to uppercase using a custom method with charAt() and
+     * ASCII value manipulation.
+     *
+     * @param text The original string.
+     * @return The new string with all lowercase letters converted to uppercase.
+     */
+    public static String myToUpperCase(String text) {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < text.length(); i++) {
+            char ch = text.charAt(i);
+            // Check if the character is a lowercase letter.
+            if (ch >= 'a' && ch <= 'z') {
+                // Convert to uppercase by subtracting 32 from its ASCII value.
+                result.append((char)(ch - 32));
+            } else {
+                // If not a lowercase letter, append the character as is.
+                result.append(ch);
+            }
+        }
+        return result.toString();
+    }
+
+    /**
+     * Compares two strings character by character.
+     *
+     * @param str1 The first string to compare.
+     * @param str2 The second string to compare.
+     * @return true if the strings are equal, false otherwise.
+     */
+    public static boolean compareStrings(String str1, String str2) {
+        // First, check if the lengths are different.
+        if (str1.length() != str2.length()) {
+            return false;
+        }
+
+        // Loop through each character and compare.
+        for (int i = 0; i < str1.length(); i++) {
+            if (str1.charAt(i) != str2.charAt(i)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Take user input for the original string.
+        System.out.print("Enter a string to convert to uppercase: ");
+        String originalText = scanner.nextLine();
+
+        // Generate the uppercase string using the custom method.
+        String myUpperCaseText = myToUpperCase(originalText);
+
+        // Generate the uppercase string using the built-in method.
+        String builtInUpperCaseText = originalText.toUpperCase();
+
+        System.out.println("\nOriginal String: \"" + originalText + "\"");
+        System.out.println("Uppercase using custom method: \"" + myUpperCaseText + "\"");
+        System.out.println("Uppercase using built-in method: \"" + builtInUpperCaseText + "\"");
+
+        // Compare the results of both methods.
+        boolean areEqual = compareStrings(myUpperCaseText, builtInUpperCaseText);
+
+        if (areEqual) {
+            System.out.println("\nBoth methods produced the same uppercase string. The comparison is correct.");
+        } else {
+            System.out.println("\nThere was a mismatch between the two methods.");
+        }
+        
+        // Close the scanner.
+        scanner.close();
+    }
+}

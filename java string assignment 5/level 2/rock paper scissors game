@@ -1,0 +1,148 @@
+
+import java.util.Scanner;
+import java.util.Random;
+
+public class RockPaperScissors {
+
+    /**
+     * Finds the computer's choice for the game.
+     *
+     * @return A string representing the computer's choice ("rock", "paper", or "scissors").
+     */
+    public static String getComputerChoice() {
+        Random random = new Random();
+        int choice = random.nextInt(3); // Generates a random number from 0 to 2.
+        switch (choice) {
+            case 0:
+                return "rock";
+            case 1:
+                return "paper";
+            case 2:
+                return "scissors";
+            default:
+                return "rock"; // Default case, should not be reached.
+        }
+    }
+
+    /**
+     * Determines the winner of a single round.
+     *
+     * @param userChoice The user's choice.
+     * @param computerChoice The computer's choice.
+     * @return A string indicating the winner: "User", "Computer", or "Tie".
+     */
+    public static String findWinner(String userChoice, String computerChoice) {
+        if (userChoice.equals(computerChoice)) {
+            return "Tie";
+        } else if ((userChoice.equals("rock") && computerChoice.equals("scissors")) ||
+                   (userChoice.equals("paper") && computerChoice.equals("rock")) ||
+                   (userChoice.equals("scissors") && computerChoice.equals("paper"))) {
+            return "User";
+        } else {
+            return "Computer";
+        }
+    }
+
+    /**
+     * Calculates the winning percentage for the user and computer.
+     *
+     * @param userWins The number of games won by the user.
+     * @param computerWins The number of games won by the computer.
+     * @param totalGames The total number of games played.
+     * @return A 2D String array containing the stats. The rows are "User Wins", "Computer Wins", "Ties".
+     * The columns are "Count" and "Percentage".
+     */
+    public static String[][] calculateAndGetStats(int userWins, int computerWins, int ties, int totalGames) {
+        String[][] stats = new String[3][2];
+        
+        // Calculate percentages.
+        double userWinPercentage = (double) userWins / totalGames * 100;
+        double computerWinPercentage = (double) computerWins / totalGames * 100;
+        double tiePercentage = (double) ties / totalGames * 100;
+
+        // Populate the stats array.
+        stats[0][0] = String.valueOf(userWins);
+        stats[0][1] = String.format("%.2f%%", userWinPercentage);
+
+        stats[1][0] = String.valueOf(computerWins);
+        stats[1][1] = String.format("%.2f%%", computerWinPercentage);
+
+        stats[2][0] = String.valueOf(ties);
+        stats[2][1] = String.format("%.2f%%", tiePercentage);
+
+        return stats;
+    }
+
+    /**
+     * Displays the game results and the final statistics in a tabular format.
+     *
+     * @param gameResults The 2D array containing the results of each game.
+     * @param stats The 2D array containing the final statistics.
+     */
+    public static void displayResults(String[][] gameResults, String[][] stats) {
+        // Display results for each game.
+        System.out.println("\n--- Game Results ---");
+        System.out.printf("%-10s | %-10s | %-10s | %-10s%n", "Game", "User", "Computer", "Winner");
+        System.out.println("---------------------------------------------");
+        for (int i = 0; i < gameResults.length; i++) {
+            System.out.printf("%-10d | %-10s | %-10s | %-10s%n", (i + 1), gameResults[i][0], gameResults[i][1], gameResults[i][2]);
+        }
+        System.out.println("---------------------------------------------");
+
+        // Display final statistics.
+        System.out.println("\n--- Final Stats ---");
+        System.out.printf("%-15s | %-10s | %-10s%n", "Metric", "Count", "Percentage");
+        System.out.println("------------------------------------");
+        System.out.printf("%-15s | %-10s | %-10s%n", "User Wins", stats[0][0], stats[0][1]);
+        System.out.printf("%-15s | %-10s | %-10s%n", "Computer Wins", stats[1][0], stats[1][1]);
+        System.out.printf("%-15s | %-10s | %-10s%n", "Ties", stats[2][0], stats[2][1]);
+        System.out.println("------------------------------------");
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Get the number of games to play.
+        System.out.print("Enter the number of games to play: ");
+        int totalGames = scanner.nextInt();
+
+        int userWins = 0;
+        int computerWins = 0;
+        int ties = 0;
+        
+        // Array to store the results of each game.
+        String[][] gameResults = new String[totalGames][3]; // UserChoice, ComputerChoice, Winner
+
+        System.out.println("\nChoices are: rock, paper, scissors");
+
+        // Main game loop.
+        for (int i = 0; i < totalGames; i++) {
+            System.out.print("\nGame " + (i + 1) + ": Enter your choice: ");
+            String userChoice = scanner.next().toLowerCase();
+            String computerChoice = getComputerChoice();
+            String winner = findWinner(userChoice, computerChoice);
+
+            // Update stats based on the winner.
+            if (winner.equals("User")) {
+                userWins++;
+            } else if (winner.equals("Computer")) {
+                computerWins++;
+            } else {
+                ties++;
+            }
+
+            // Store the game results.
+            gameResults[i][0] = userChoice;
+            gameResults[i][1] = computerChoice;
+            gameResults[i][2] = winner;
+        }
+
+        // Calculate and get the final stats array.
+        String[][] finalStats = calculateAndGetStats(userWins, computerWins, ties, totalGames);
+
+        // Display all results and stats.
+        displayResults(gameResults, finalStats);
+
+        scanner.close();
+    }
+}

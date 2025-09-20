@@ -1,0 +1,57 @@
+import java.util.Scanner;
+
+public class StringComparator {
+
+    /**
+     * Compares two strings character by character using the charAt() method.
+     *
+     * @param str1 The first string to compare.
+     * @param str2 The second string to compare.
+     * @return true if the strings are equal, false otherwise.
+     */
+    public static boolean compareStrings(String str1, String str2) {
+        // First, check if the lengths are different. If so, the strings cannot be equal.
+        if (str1.length() != str2.length()) {
+            return false;
+        }
+
+        // Loop through each character and compare.
+        for (int i = 0; i < str1.length(); i++) {
+            if (str1.charAt(i) != str2.charAt(i)) {
+                // If any characters don't match, the strings are not equal.
+                return false;
+            }
+        }
+
+        // If the loop completes without finding any differences, the strings are equal.
+        return true;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Take user input for two strings.
+        System.out.print("Enter the first string: ");
+        String string1 = scanner.next();
+
+        System.out.print("Enter the second string: ");
+        String string2 = scanner.next();
+
+        // Use the custom method to compare the strings.
+        boolean customResult = compareStrings(string1, string2);
+        System.out.println("\nResult using custom compareStrings() method: " + customResult);
+
+        // Use the built-in equals() method to verify the result.
+        boolean builtInResult = string1.equals(string2);
+        System.out.println("Result using built-in equals() method: " + builtInResult);
+
+        // Check if both results are the same.
+        if (customResult == builtInResult) {
+            System.out.println("\nBoth methods produced the same result. The comparison is correct.");
+        } else {
+            System.out.println("\nThere was a mismatch between the comparison methods.");
+        }
+        
+        scanner.close();
+    }
+}

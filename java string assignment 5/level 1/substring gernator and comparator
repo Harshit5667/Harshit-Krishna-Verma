@@ -1,0 +1,88 @@
+import java.util.Scanner;
+
+public class SubstringGenerator {
+
+    /**
+     * Creates a substring from a string using a custom method with charAt().
+     *
+     * @param text The original string.
+     * @param startIndex The starting index (inclusive).
+     * @param endIndex The ending index (exclusive).
+     * @return The new substring.
+     */
+    public static String mySubstring(String text, int startIndex, int endIndex) {
+        // Validate indices to prevent errors.
+        if (startIndex < 0 || endIndex > text.length() || startIndex > endIndex) {
+            System.err.println("Invalid start or end index.");
+            return ""; // Return an empty string on error.
+        }
+
+        StringBuilder substring = new StringBuilder();
+        for (int i = startIndex; i < endIndex; i++) {
+            substring.append(text.charAt(i));
+        }
+
+        return substring.toString();
+    }
+
+    /**
+     * Compares two strings character by character.
+     *
+     * @param str1 The first string to compare.
+     * @param str2 The second string to compare.
+     * @return true if the strings are equal, false otherwise.
+     */
+    public static boolean compareStrings(String str1, String str2) {
+        // First, check if the lengths are different.
+        if (str1.length() != str2.length()) {
+            return false;
+        }
+
+        // Loop through each character and compare.
+        for (int i = 0; i < str1.length(); i++) {
+            if (str1.charAt(i) != str2.charAt(i)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Take user input for the original string.
+        System.out.print("Enter the original string: ");
+        String originalText = scanner.nextLine();
+
+        // Take user input for start and end indices.
+        System.out.print("Enter the starting index for the substring (inclusive): ");
+        int startIndex = scanner.nextInt();
+
+        System.out.print("Enter the ending index for the substring (exclusive): ");
+        int endIndex = scanner.nextInt();
+        
+        // Close the scanner as we no longer need it.
+        scanner.close();
+
+        // Generate the substring using the custom method.
+        String mySub = mySubstring(originalText, startIndex, endIndex);
+
+        // Generate the substring using the built-in method.
+        String builtInSub = "";
+        try {
+            builtInSub = originalText.substring(startIndex, endIndex);
+        } catch (StringIndexOutOfBoundsException e) {
+            System.err.println("Built-in substring method failed due to invalid indices.");
+        }
+
+        System.out.println("\nSubstring using custom method: \"" + mySub + "\"");
+        System.out.println("Substring using built-in method: \"" + builtInSub + "\"");
+
+        // Compare the results of both methods.
+        if (compareStrings(mySub, builtInSub)) {
+            System.out.println("\nBoth methods generated the same substring. The comparison is correct.");
+        } else {
+            System.out.println("\nThere was a mismatch between the comparison methods.");
+        }
+    }
+}

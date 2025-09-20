@@ -1,0 +1,68 @@
+import java.util.Scanner;
+
+public class VowelConsonantCounter {
+
+    /**
+     * Determines the type of a given character: "Vowel", "Consonant", or "Not a Letter".
+     *
+     * @param ch The character to be classified.
+     * @return A string representing the character's type.
+     */
+    public static String getCharacterType(char ch) {
+        char lowercaseCh = Character.toLowerCase(ch);
+
+        // Check if the character is a letter of the alphabet.
+        if (lowercaseCh >= 'a' && lowercaseCh <= 'z') {
+            // Check if the letter is a vowel.
+            if (lowercaseCh == 'a' || lowercaseCh == 'e' || lowercaseCh == 'i' || lowercaseCh == 'o' || lowercaseCh == 'u') {
+                return "Vowel";
+            } else {
+                return "Consonant";
+            }
+        } else {
+            return "Not a Letter";
+        }
+    }
+
+    /**
+     * Finds and counts the number of vowels and consonants in a string.
+     *
+     * @param text The input string to analyze.
+     * @return An integer array of size 2, where index 0 holds the vowel count
+     * and index 1 holds the consonant count.
+     */
+    public static int[] countVowelsAndConsonants(String text) {
+        int[] counts = new int[2]; // counts[0] for vowels, counts[1] for consonants
+        
+        for (int i = 0; i < text.length(); i++) {
+            String type = getCharacterType(text.charAt(i));
+            
+            if (type.equals("Vowel")) {
+                counts[0]++;
+            } else if (type.equals("Consonant")) {
+                counts[1]++;
+            }
+        }
+        
+        return counts;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Get the string input from the user.
+        System.out.print("Enter a string: ");
+        String inputString = scanner.nextLine();
+
+        // Get the counts of vowels and consonants from the custom method.
+        int[] characterCounts = countVowelsAndConsonants(inputString);
+
+        // Display the results.
+        System.out.println("\n--- Analysis of the String ---");
+        System.out.println("Total characters: " + inputString.length());
+        System.out.println("Vowel count: " + characterCounts[0]);
+        System.out.println("Consonant count: " + characterCounts[1]);
+
+        scanner.close();
+    }
+}

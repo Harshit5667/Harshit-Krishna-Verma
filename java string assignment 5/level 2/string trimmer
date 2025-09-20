@@ -1,0 +1,105 @@
+import java.util.Scanner;
+
+public class StringTrimmer {
+
+    /**
+     * Finds the start and end indices of a string after trimming leading and trailing spaces.
+     * This method iterates through the string using the charAt() method.
+     *
+     * @param text The string to be trimmed.
+     * @return An integer array containing the start and end indices.
+     */
+    public static int[] trimSpaces(String text) {
+        int length = text.length();
+        int start = 0;
+        int end = length - 1;
+
+        // Loop to find the first non-space character (trim leading spaces).
+        while (start < length && text.charAt(start) == ' ') {
+            start++;
+        }
+
+        // Loop to find the last non-space character (trim trailing spaces).
+        while (end >= start && text.charAt(end) == ' ') {
+            end--;
+        }
+
+        // Return the start and end indices.
+        return new int[]{start, end};
+    }
+
+    /**
+     * Creates a substring from a string given the start and end indices.
+     * This method builds the new string character by character.
+     *
+     * @param text The original string.
+     * @param start The starting index of the substring.
+     * @param end The ending index of the substring.
+     * @return The new substring.
+     */
+    public static String getSubString(String text, int start, int end) {
+        // If the start index is greater than the end index, it means the string was all spaces.
+        if (start > end) {
+            return "";
+        }
+        
+        StringBuilder trimmedText = new StringBuilder();
+        // Loop from the start index to the end index to create the substring.
+        for (int i = start; i <= end; i++) {
+            trimmedText.append(text.charAt(i));
+        }
+        return trimmedText.toString();
+    }
+
+    /**
+     * Compares two strings character by character using the charAt() method.
+     *
+     * @param str1 The first string to compare.
+     * @param str2 The second string to compare.
+     * @return true if the strings are equal, false otherwise.
+     */
+    public static boolean compareStrings(String str1, String str2) {
+        // Check if the lengths are different, if so, the strings cannot be equal.
+        if (str1.length() != str2.length()) {
+            return false;
+        }
+
+        // Iterate through each character and compare.
+        for (int i = 0; i < str1.length(); i++) {
+            if (str1.charAt(i) != str2.charAt(i)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Take user input for the string with leading and trailing spaces.
+        System.out.print("Enter a string with leading/trailing spaces: ");
+        String text = scanner.nextLine();
+
+        // Get the start and end indices for trimming using the user-defined method.
+        int[] indices = trimSpaces(text);
+        int start = indices[0];
+        int end = indices[1];
+
+        // Create the trimmed substring using the user-defined method.
+        String trimmedWithCustomMethod = getSubString(text, start, end);
+
+        // Trim the string using the built-in trim() method for comparison.
+        String trimmedWithBuiltInMethod = text.trim();
+
+        // Compare the results of both methods using the user-defined comparison method.
+        boolean areEqual = compareStrings(trimmedWithCustomMethod, trimmedWithBuiltInMethod);
+
+        // Display the results.
+        System.out.println("\nOriginal string: \"" + text + "\"");
+        System.out.println("Trimmed with custom method: \"" + trimmedWithCustomMethod + "\"");
+        System.out.println("Trimmed with built-in method: \"" + trimmedWithBuiltInMethod + "\"");
+        System.out.println("Are the results identical? " + areEqual);
+
+        scanner.close();
+    }
+}
