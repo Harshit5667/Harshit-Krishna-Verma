@@ -1,0 +1,28 @@
+import java.util.Scanner;
+
+// Program to print a multiplication table for a number between 6 and 9.
+public class MultiplicationTable6To9 {
+    public static void main(String[] args) {
+        // Create a Scanner object to read user input.
+        Scanner scanner = new Scanner(System.in);
+        int number;
+        
+        // Validate user input to ensure the number is between 6 and 9.
+        do {
+            System.out.print("Enter a number between 6 and 9: ");
+            number = scanner.nextInt();
+            if (number < 6 || number > 9) {
+                System.out.println("Invalid input. Please enter a number between 6 and 9.");
+            }
+        } while (number < 6 || number > 9);
+        
+        // Print the multiplication table.
+        System.out.println("Multiplication table for " + number + ":");
+        for (int i = 1; i <= 10; i++) {
+            System.out.println(number + " x " + i + " = " + (number * i));
+        }
+        
+        // Close the scanner.
+        scanner.close();
+    }
+}

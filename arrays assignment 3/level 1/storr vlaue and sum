@@ -1,0 +1,41 @@
+import java.util.Scanner;
+
+// Program to store values in an array and find their sum.
+public class StoreValuesAndSum {
+    public static void main(String[] args) {
+        // Create a Scanner object to read user input.
+        Scanner scanner = new Scanner(System.in);
+        
+        // Declare an array to store up to 10 numbers.
+        int[] numbers = new int[10];
+        int count = 0;
+        int sum = 0;
+        
+        // Loop to get user input until a condition is met.
+        System.out.println("Enter numbers (enter 0 or a negative number to stop):");
+        while (count < 10) {
+            System.out.print("Enter number " + (count + 1) + ": ");
+            int num = scanner.nextInt();
+            
+            // Check for termination condition.
+            if (num <= 0) {
+                break;
+            }
+            
+            numbers[count] = num;
+            sum += num;
+            count++;
+        }
+        
+        // Display the numbers and their sum.
+        System.out.print("The numbers entered are: ");
+        for (int i = 0; i < count; i++) {
+            System.out.print(numbers[i] + " ");
+        }
+        System.out.println();
+        System.out.println("The sum of all numbers is: " + sum);
+        
+        // Close the scanner.
+        scanner.close();
+    }
+}

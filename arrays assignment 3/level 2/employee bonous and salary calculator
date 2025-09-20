@@ -1,0 +1,99 @@
+import java.util.Scanner;
+
+public class EmployeeBonusCalculator {
+
+    public static void main(String[] args) {
+        // Create a Scanner object for user input
+        Scanner scanner = new Scanner(System.in);
+
+        // Define the fixed number of employees
+        final int NUM_EMPLOYEES = 10;
+
+        // Define arrays to store employee data
+        double[] oldSalaries = new double[NUM_EMPLOYEES];
+        double[] yearsOfService = new double[NUM_EMPLOYEES];
+        double[] bonusAmounts = new double[NUM_EMPLOYEES];
+        double[] newSalaries = new double[NUM_EMPLOYEES];
+
+        // Define variables for total calculations
+        double totalOldSalary = 0;
+        double totalNewSalary = 0;
+        double totalBonus = 0;
+
+        System.out.println("Please enter the salary and years of service for " + NUM_EMPLOYEES + " employees.");
+
+        // Loop to take input from the user with validation
+        for (int i = 0; i < NUM_EMPLOYEES; i++) {
+            System.out.println("\n--- Employee " + (i + 1) + " ---");
+            
+            // Take and validate salary input
+            while (true) {
+                System.out.print("Enter current salary: ");
+                if (scanner.hasNextDouble()) {
+                    oldSalaries[i] = scanner.nextDouble();
+                    if (oldSalaries[i] < 0) {
+                        System.out.println("Invalid input. Salary cannot be negative. Please enter again.");
+                    } else {
+                        break; // Valid input, exit loop
+                    }
+                } else {
+                    System.out.println("Invalid input. Please enter a valid number.");
+                    scanner.next(); // Consume the invalid input
+                }
+            }
+
+            // Take and validate years of service input
+            while (true) {
+                System.out.print("Enter years of service: ");
+                if (scanner.hasNextDouble()) {
+                    yearsOfService[i] = scanner.nextDouble();
+                    if (yearsOfService[i] < 0) {
+                        System.out.println("Invalid input. Years of service cannot be negative. Please enter again.");
+                    } else {
+                        break; // Valid input, exit loop
+                    }
+                } else {
+                    System.out.println("Invalid input. Please enter a valid number.");
+                    scanner.next(); // Consume the invalid input
+                }
+            }
+        }
+
+        // Loop to calculate bonus, new salary, and totals
+        for (int i = 0; i < NUM_EMPLOYEES; i++) {
+            double bonusRate;
+            if (yearsOfService[i] > 5) {
+                bonusRate = 0.05; // 5% bonus
+            } else {
+                bonusRate = 0.02; // 2% bonus
+            }
+
+            // Calculate bonus and new salary
+            bonusAmounts[i] = oldSalaries[i] * bonusRate;
+            newSalaries[i] = oldSalaries[i] + bonusAmounts[i];
+
+            // Accumulate totals
+            totalOldSalary += oldSalaries[i];
+            totalNewSalary += newSalaries[i];
+            totalBonus += bonusAmounts[i];
+        }
+
+        // Close the scanner
+        scanner.close();
+
+        // Print the final results
+        System.out.println("\n--- Final Calculations ---");
+        System.out.println("Total Old Salary: $" + String.format("%.2f", totalOldSalary));
+        System.out.println("Total New Salary: $" + String.format("%.2f", totalNewSalary));
+        System.out.println("Total Bonus Payout: $" + String.format("%.2f", totalBonus));
+        
+        System.out.println("\n--- Detailed Employee Breakdown ---");
+        for (int i = 0; i < NUM_EMPLOYEES; i++) {
+            System.out.println("Employee " + (i + 1) + ":");
+            System.out.println("  Years of Service: " + yearsOfService[i]);
+            System.out.println("  Old Salary: $" + String.format("%.2f", oldSalaries[i]));
+            System.out.println("  Bonus Amount: $" + String.format("%.2f", bonusAmounts[i]));
+            System.out.println("  New Salary: $" + String.format("%.2f", newSalaries[i]));
+        }
+    }
+}

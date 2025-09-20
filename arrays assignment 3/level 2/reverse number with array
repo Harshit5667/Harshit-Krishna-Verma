@@ -1,0 +1,47 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class ReverseNumber {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Enter a positive integer: ");
+        int number = scanner.nextInt();
+        
+        // Input validation
+        if (number < 0) {
+            System.out.println("Invalid input. Please enter a positive integer.");
+            scanner.close();
+            return;
+        }
+
+        // --- Find the digits and store them in a dynamic list ---
+        ArrayList<Integer> digitsList = new ArrayList<>();
+        if (number == 0) {
+            digitsList.add(0);
+        } else {
+            int tempNumber = number;
+            while (tempNumber > 0) {
+                int digit = tempNumber % 10;
+                digitsList.add(digit);
+                tempNumber /= 10;
+            }
+        }
+
+        // --- Create a static array from the dynamic list ---
+        int[] digitsArray = new int[digitsList.size()];
+        for (int i = 0; i < digitsList.size(); i++) {
+            digitsArray[i] = digitsList.get(i);
+        }
+
+        // --- Display the reversed number ---
+        System.out.print("The reversed number is: ");
+        for (int i = 0; i < digitsArray.length; i++) {
+            System.out.print(digitsArray[i]);
+        }
+        System.out.println(); // For a new line after the output
+
+        scanner.close();
+    }
+}
